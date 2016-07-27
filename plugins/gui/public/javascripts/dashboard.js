@@ -64,7 +64,7 @@ t.preload = function () {
     $("#console-list-group").on('click', '.changeQueueButton', function(e) {
         e.preventDefault();
         selectedId = $(this).attr("id");
-        $(this).parent().remove();
+        var selectedLog = $(this).parent();
         swal({
             title: "Desired Queue?",
             text: "please input the queue you'd like this document to be sent",
@@ -78,6 +78,7 @@ t.preload = function () {
                 swal.showInputError("You need to provide a queue");
                 return false;
             }
+            selectedLog.remove();
             retryWithQueue(findLog(selectedId), inputValue);
             swal.close();
         });
